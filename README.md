@@ -10,3 +10,27 @@ Run the following in a terminal:
 To run the API locally:
  - `rails s`
  - Connect on `localhost:3000/api/v1/`
+
+## Endpoints
+### Pokemon Show (`/api/v1/pokemon/"pokemon name"`)
+Search for a pokemon in the database
+Example Request:
+`GET /api/v1/pokemon/pikachu`
+
+Example Response:
+```
+{
+    "data": {
+        "id": "1",
+        "type": "pokemon",
+        "attributes": {
+            "name": "Pikachu",
+            "weight": 13.23,
+            "height": 1.31,
+            "defense": 40,
+            "attack": 55,
+            "hp": 35
+        }
+    }
+}
+```
