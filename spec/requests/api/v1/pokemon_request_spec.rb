@@ -136,7 +136,10 @@ describe "Pokemon API" do
       }
 
       delete '/api/v1/pokemon/pikachu', params: request
+      
       expect(response).to be_successful
+      expect(Pokemon.last).to be(nil)
+      expect(Search.last).to be(nil)
     end
   end
 end
