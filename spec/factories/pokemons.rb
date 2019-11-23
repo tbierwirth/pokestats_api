@@ -6,6 +6,6 @@ FactoryBot.define do
     attack { 1 }
     defense { 1 }
     hp { 1 }
-    search { nil }
+    search
   end
 end

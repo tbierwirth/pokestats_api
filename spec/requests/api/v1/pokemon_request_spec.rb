@@ -2,6 +2,18 @@ require 'rails_helper'
 
 describe "Pokemon API" do
   describe "GET /pokemon" do
+    it "can return all pokemon in the database" do
+      5.times do
+        create(:pokemon)
+      end
+
+      get '/api/v1/pokemon'
+      pokemon = JSON.parse(response.body, symbolize_names: true)[:data]
+      expect(pokemon.count).to eq(5)
+    end
+  end
+
+  describe "GET /pokemon/:name" do
     before :each do
       pikachu = File.open('./spec/fixtures/pikachu.json')
       stub_request(:get, "https://pokeapi.co/api/v2/pokemon/pikachu").
