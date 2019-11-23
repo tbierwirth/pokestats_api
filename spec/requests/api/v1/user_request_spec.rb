@@ -4,7 +4,7 @@ describe 'Users API' do
   describe 'POST /users' do
     it 'creates a user when valid credentials are given' do
       user = {
-        "email": "tyler@gmail.com",
+        "username": "tyler@gmail.com",
         "password": "password",
         "password_confirmation": "password"
       }
