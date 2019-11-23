@@ -16,9 +16,9 @@ RSpec.describe PokeApiService do
         expect(pokemon[:name]).to eq("pikachu")
         expect(pokemon[:weight]).to eq(60)
         expect(pokemon[:height]).to eq(4)
-        expect(pokemon[:stats][4][:stat][:name]).to eq("defense")
-        expect(pokemon[:stats][5][:stat][:name]).to eq("attack")
-        expect(pokemon[:stats][6][:stat][:name]).to eq("hp")
+        expect(pokemon[:stats][3][:stat][:name]).to eq("defense")
+        expect(pokemon[:stats][4][:stat][:name]).to eq("attack")
+        expect(pokemon[:stats][5][:stat][:name]).to eq("hp")
       end
     end
   end
