@@ -51,5 +51,15 @@ describe "Pokemon API" do
       expect(Search.last.id).to eq(search.id)
       expect(Pokemon.last.id).to eq(pokemon.id)
     end
+
+    it "wont make another api call if the search exists but no pokemon exists" do
+      search = create(:search, name: "notapokemon")
+
+      get '/api/v1/pokemon/notapokemon'
+
+      expect(response).to_not be_successful
+      expect(Search.last.id).to eq(search.id)
+      expect(Pokemon.last).to be(nil)
+    end
   end
 end
