@@ -12,6 +12,10 @@ class PokeApiService
 
   def get_json(url)
     response = conn.get(url)
-    JSON.parse(response.body, symbolize_names: true)
+    if response.body.include?("Not Found")
+      return
+    else
+      JSON.parse(response.body, symbolize_names: true)
+    end
   end
 end
