@@ -125,4 +125,18 @@ describe "Pokemon API" do
       expect(Pokemon.last).to be(nil)
     end
   end
+
+  describe "DELETE /pokemon/:name" do
+    it "can delete a pokemon if given an api_key and pokemon name" do
+      search = create(:search, name: "pikachu")
+      pokemon = create(:pokemon, name: "Pikachu", search_id: search.id)
+      User.create!(username: "tyler@gmail.com", password: "password")
+      request = {
+      "api_key": "#{User.last.api_key}"
+      }
+
+      delete '/api/v1/pokemon/pikachu', params: request
+      expect(response).to be_successful
+    end
+  end
 end
