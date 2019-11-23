@@ -145,7 +145,7 @@ describe "Pokemon API" do
     end
 
     it "wont delete a pokemon if given an invalid api_key" do
-      create(:search, name: "pikachu")
+      search = create(:search, name: "pikachu")
       create(:pokemon, name: "Pikachu", search_id: search.id)
 
       delete '/api/v1/pokemon/pikachu'
