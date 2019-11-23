@@ -18,9 +18,10 @@ To run the API locally:
 
 Optional Params:
 
-| Query Param | Attribute                                 |
+| Query Param | Value                                 |
 |-------------|-------------------------------------------|
 | sorted      | name, weight, height, attack, defense, hp |
+| min_hp      | 0 - 100 |
 
 Example Request:
 `GET /api/v1/pokemon`

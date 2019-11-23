@@ -48,6 +48,22 @@ describe "Pokemon API" do
     end
   end
 
+  it "returns pokemon with a minimum hp of 50" do
+    create(:pokemon, hp: 55)
+    create(:pokemon, hp: 60)
+    3.times do
+      create(:pokemon, hp: rand(20..49))
+    end
+
+    get '/api/v1/pokemon?min_hp=50'
+
+    results = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    expect(results.count).to eq(2)
+    expect(results.first[:attributes][:hp]).to eq(55)
+    expect(results.last[:attributes][:hp]).to eq(60)
+  end
+
   describe "GET /pokemon/:name" do
     before :each do
       pikachu = File.open('./spec/fixtures/pikachu.json')

@@ -9,6 +9,8 @@ class Api::V1::PokemonController < ApplicationController
       else
         render json: {status: 404, message: "Pokemon can only be sorted by name, weight, height, defense and hp"}, status: 404
       end
+    elsif params[:min_hp]
+      render json: PokemonSerializer.new(pokemon.where('hp >= ?', params[:min_hp]))
     else
       render json: PokemonSerializer.new(pokemon)
     end
