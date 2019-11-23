@@ -20,6 +20,21 @@ class Api::V1::PokemonController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find_by(api_key: params[:api_key])
+    if user
+      if pokemon = Pokemon.find_by(name: name.capitalize)
+        pokemon.destroy
+        Search.find_by(name: name).destroy
+        render json: "#{pokemon.name} has been deleted", status: 202
+      else
+        render json: "Pokemon does not exist", status: 404
+      end
+    else
+      render json: "API key is not valid", status: :unauthorized
+    end
+  end
+
   private
   def name
     params[:id].downcase

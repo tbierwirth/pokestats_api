@@ -14,6 +14,36 @@ To run the API locally:
 
 ## Endpoints
 
+### Registration (`/api/v1/users`)
+**Create an account and receive an API key**
+
+| Params | Description                                |
+|------------|--------------------------------------------|
+| username       | Must be unique        |
+| password | Must match password_confirmation        |
+| password_confirmation | Must match password        |
+
+Example Request:
+```
+POST /api/v1/users
+
+{
+  "email": "user@example.com",
+  "password": "password"
+  "password_confirmation": "password"
+}
+```
+
+Example Response:
+```
+status: 201
+body:
+
+{
+  "api_key": "wKijQBid7j-pIpjuwWOjxQ",
+}
+```
+
 ### Pokemon Index (`/api/v1/pokemon`)
 **Return all Pokemon in the database**
 
@@ -93,6 +123,28 @@ Example Response:
         }
     }
 }
+```
+
+### Pokemon Delete (`/api/v1/pokemon/"pokemon name"`)
+
+Required Params:
+
+| Query Param | Value                                 |
+|-------------|-------------------------------------------|
+| api_key      | Valid api key |
+
+Example Request:
+```
+DELETE /api/v1/pokemon/pikachu
+
+{
+  "api_key": "wKijQBid7j-pIpjuwWOjxQ"
+}
+```
+
+Example Response:
+```
+Pikachu has been deleted
 ```
 
 ### Tech Stack
