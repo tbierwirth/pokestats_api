@@ -14,8 +14,10 @@ To run the API locally:
 ## Endpoints
 
 ### Pokemon Index (`/api/v1/pokemon`)
-Return all Pokemon in the database
+**Return all Pokemon in the database**
+
 Optional Params:
+
 | Query Param | Attribute                                 |
 |-------------|-------------------------------------------|
 | sorted      | name, weight, height, attack, defense, hp |
@@ -68,7 +70,8 @@ Example Response:
 ```
 
 ### Pokemon Show (`/api/v1/pokemon/"pokemon name"`)
-Search for a pokemon in the database
+**Search for a pokemon in the database**
+
 Example Request:
 `GET /api/v1/pokemon/pikachu`
 
