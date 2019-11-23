@@ -3,6 +3,12 @@ class Api::V1::PokemonController < ApplicationController
     pokemon = Pokemon.all
     if pokemon.blank?
       render json: {status: 200, message: "No Pokemon in the database, please create some!"}, status: 200
+    elsif params[:sorted]
+      if Pokemon.attribute_names.include?(params[:sorted])
+        render json: PokemonSerializer.new(pokemon.order(params[:sorted]))
+      else
+        render json: {status: 404, message: "Pokemon can only be sorted by name, weight, height, defense and hp"}, status: 404
+      end
     else
       render json: PokemonSerializer.new(pokemon)
     end

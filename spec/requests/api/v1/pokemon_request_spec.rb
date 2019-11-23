@@ -17,6 +17,35 @@ describe "Pokemon API" do
       results = JSON.parse(response.body, symbolize_names: true)
       expect(results[:message]).to eq("No Pokemon in the database, please create some!")
     end
+
+    it "can sort by pokemon name" do
+      create(:pokemon, name: "Z")
+      create(:pokemon, name: "A")
+      3.times do
+        create(:pokemon)
+      end
+
+      get '/api/v1/pokemon?sorted=name'
+
+      results = JSON.parse(response.body, symbolize_names: true)[:data]
+      expect(response).to be_successful
+      expect(results.count).to eq(5)
+      expect(results.first[:attributes][:name]).to eq("A")
+      expect(results.last[:attributes][:name]).to eq("Z")
+    end
+
+    it "returns an error if attempting to sort by an attribute that doesnt exist" do
+      create(:pokemon, name: "Z")
+      create(:pokemon, name: "A")
+      3.times do
+        create(:pokemon)
+      end
+
+      get '/api/v1/pokemon?sorted=rarity'
+      expect(response).to_not be_successful
+      results = JSON.parse(response.body, symbolize_names: true)
+      expect(results[:message]).to eq("Pokemon can only be sorted by name, weight, height, defense and hp")
+    end
   end
 
   describe "GET /pokemon/:name" do
