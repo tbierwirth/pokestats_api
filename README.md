@@ -123,3 +123,25 @@ Example Response:
     }
 }
 ```
+
+### Pokemon Delete (`/api/v1/pokemon/"pokemon name"`)
+
+Required Params:
+
+| Query Param | Value                                 |
+|-------------|-------------------------------------------|
+| api_key      | Valid api key |
+
+Example Request:
+```
+DELETE /api/v1/pokemon/pikachu
+
+{
+  "api_key": "wKijQBid7j-pIpjuwWOjxQ"
+}
+```
+
+Example Response:
+```
+Pikachu has been deleted
+```
