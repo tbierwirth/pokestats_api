@@ -1,4 +1,5 @@
 # PokeStats API
+A basic API that consumes PokeAPI that allows users to search for pokemon and sort or filter them by their stats.  Deployed to Heroku at https://pokestats-api.herokuapp.com
 
 ## Setup
 Run the following in a terminal:
@@ -145,3 +146,8 @@ Example Response:
 ```
 Pikachu has been deleted
 ```
+
+### Tech Stack
+- Ruby 2.5.7
+- Rails 5.2.3
+- PostgreSQL 11.3
