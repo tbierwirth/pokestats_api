@@ -136,10 +136,23 @@ describe "Pokemon API" do
       }
 
       delete '/api/v1/pokemon/pikachu', params: request
-      
+
       expect(response).to be_successful
       expect(Pokemon.last).to be(nil)
       expect(Search.last).to be(nil)
+
+      expect(response.body).to eq("#{pokemon.name} has been deleted")
+    end
+
+    it "wont delete a pokemon if given an invalid api_key" do
+      create(:search, name: "pikachu")
+      create(:pokemon, name: "Pikachu", search_id: search.id)
+
+      delete '/api/v1/pokemon/pikachu'
+
+      expect(response).to_not be_successful
+
+      expect(response.body).to eq("API key is not valid")
     end
   end
 end
