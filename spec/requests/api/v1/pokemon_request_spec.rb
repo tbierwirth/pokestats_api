@@ -11,6 +11,12 @@ describe "Pokemon API" do
       pokemon = JSON.parse(response.body, symbolize_names: true)[:data]
       expect(pokemon.count).to eq(5)
     end
+
+    it "displays a message if no pokemon exists" do
+      get '/api/v1/pokemon'
+      results = JSON.parse(response.body, symbolize_names: true)
+      expect(results[:message]).to eq("No Pokemon in the database, please create some!")
+    end
   end
 
   describe "GET /pokemon/:name" do
